@@ -11,23 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          pip install -r app/requirements.txt
+    - name: Install dependencies
+      run: |
+        pip install -r app/requirements.txt
 
-      - name: Run security scan (Bandit)
-        run: |
-          pip install bandit
-          bandit -r app
+    - name: Run security scan (Bandit)
+      run: |
+        pip install bandit
+        bandit -r app
 
-      - name: Build Docker image
-        run: |
-          docker build -t secure-ci-cd-demi .
+    - name: Build Docker image
+      run: |
+        docker build -t secure-ci-cd-demi .
